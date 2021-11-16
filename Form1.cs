@@ -13,8 +13,8 @@ namespace graphical
 	public partial class Form1 : Form
 	{
 		private bool cursorState;
-		private Shape ghostShape;
 		private decimal ratio;
+		private Shape ghostShape;
 		public Form1()
 		{
 			InitializeComponent();
@@ -78,14 +78,25 @@ namespace graphical
 		private void pictureBox_MouseMove(object sender, MouseEventArgs e) {
 			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y);
 			if(shape != null) {
-
+				if(ghostShape != null) {
+					ghostShape.Ghost = false;
+				}
+				shape.Ghost = true;
+				ghostShape = shape;
+				this.pictureBox.Refresh();
+			} else if(ghostShape != null) {
+				ghostShape.Ghost = false;
+				ghostShape = null;
+				this.pictureBox.Refresh();
 			}
 		}
 		private void pictureBox_Paint(object sender, PaintEventArgs e) {
 			e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 			e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
 			Shape.__Draw(e.Graphics);
-			ghostShape.Draw(e.Graphics);
+			if(ghostShape != null) {
+				ghostShape.Draw(e.Graphics);
+			}
 		}
 	}
 }
