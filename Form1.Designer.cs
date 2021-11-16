@@ -49,7 +49,7 @@ namespace graphical
 			this.ClientSize = new System.Drawing.Size(800, 450);
 			this.Controls.Add(this.pictureBox);
 			this.Name = "Form1";
-			this.Text = "Form1";
+			this.Text = "graph-ical";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.BackColor = System.Drawing.Color.White;
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
