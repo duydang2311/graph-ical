@@ -2,6 +2,7 @@ namespace graphical {
     abstract class Shape {
         protected int x;
         protected int y;
+        protected bool ghost;
         protected static System.Collections.Generic.List<Shape> shapes = new System.Collections.Generic.List<Shape>();
         protected static decimal ratio = 1.0m;
         protected System.Drawing.Color color;
@@ -13,6 +14,10 @@ namespace graphical {
             get => this.y;
             set { this.y = value; }
         }
+        public bool Ghost {
+            get => this.ghost;
+            set { this.ghost = value; }
+        }
         public System.Drawing.Color Color {
             get => this.color;
             set { this.color = value; }
@@ -21,6 +26,7 @@ namespace graphical {
             this.x = x;
             this.y = y;
             this.color = color;
+            this.ghost = true;
             Shape.shapes.Add(this);
         }
         public abstract void Draw(System.Drawing.Graphics graphics);
