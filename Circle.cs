@@ -5,8 +5,11 @@ namespace graphical {
             this.radius = radius;
         }
         override public void Draw(System.Drawing.Graphics graphic) {
-            // graphic.DrawEllipse(new System.Drawing.Pen(this.color, 2), this.x, this.y, this.radius, this.radius);
-            graphic.DrawEllipse(new System.Drawing.Pen(this.color, (float)(2 * Shape.ratio)), (int)(this.x * Shape.ratio), (int)(this.y * Shape.ratio), (int)(this.radius * Shape.ratio), (int)(this.radius * Shape.ratio));
+            if(this.ghost) {
+                graphic.FillEllipse(System.Drawing.Brushes.Black, (int)(this.x * Shape.ratio), (int)(this.y * Shape.ratio), (int)(this.radius * Shape.ratio), (int)(this.radius * Shape.ratio));
+            } else {
+                graphic.DrawEllipse(new System.Drawing.Pen(this.color, (float)(2 * Shape.ratio)), (int)(this.x * Shape.ratio), (int)(this.y * Shape.ratio), (int)(this.radius * Shape.ratio), (int)(this.radius * Shape.ratio));
+            }
         }
         public override bool IsPointCollided(int x, int y) {
             double ratioRadius = (double)(this.radius * Shape.ratio);
