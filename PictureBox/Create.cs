@@ -21,7 +21,7 @@ namespace graphical {
 			const int size = 70;
 			int offsetedX = (int)((e.Location.X - (int)(size * (double)(Shape.Ratio) / 2.0)) / Shape.Ratio);
 			int offsetedY = (int)((e.Location.Y - (int)(size * (double)(Shape.Ratio) / 2.0)) / Shape.Ratio);
-			new Circle(offsetedX, offsetedY, size, Color.Black);
+			new Circle(new Point(offsetedX, offsetedY), size, Color.Black);
 			this.pictureBox.Refresh();
 		}
     }
