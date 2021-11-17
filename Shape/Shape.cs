@@ -52,7 +52,6 @@ namespace graphical {
             set { Shape.ratio = value; }
         }
         public static void __Draw(System.Drawing.Graphics graphics) {
-            graphics.Clear(System.Drawing.Color.White);
             foreach(Shape shape in Shape.shapes) {
                 shape.Draw(graphics);
             }
