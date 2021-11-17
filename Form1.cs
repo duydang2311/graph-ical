@@ -53,50 +53,5 @@ namespace graphical
 				this.cursorState = true;
 			}
 		}
-		private void pictureBox_MouseClick(object sender, MouseEventArgs e) {
-			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y);
-			if(shape != null) {
-				Shape.Remove(shape);
-				this.pictureBox.Refresh();
-				return;
-			}
-			const int size = 70;
-			int offsetedX = (int)((e.Location.X - (int)(size * (double)(Shape.Ratio) / 2.0)) / Shape.Ratio);
-			int offsetedY = (int)((e.Location.Y - (int)(size * (double)(Shape.Ratio) / 2.0)) / Shape.Ratio);
-			new Circle(offsetedX, offsetedY, size, Color.Black);
-			this.pictureBox.Refresh();
-		}
-		private void pictureBox_MouseWheel(object sender, MouseEventArgs e) {
-			if(e.Delta < 0) {
-				Shape.Ratio -= 0.075m;
-				this.pictureBox.Refresh();
-			} else if(e.Delta > 0) {
-				Shape.Ratio += 0.075m;
-				this.pictureBox.Refresh();
-			}
-		}
-		private void pictureBox_MouseMove(object sender, MouseEventArgs e) {
-			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y);
-			if(shape != null) {
-				if(ghostShape != null) {
-					ghostShape.Ghost = false;
-				}
-				shape.Ghost = true;
-				ghostShape = shape;
-				this.pictureBox.Refresh();
-			} else if(ghostShape != null) {
-				ghostShape.Ghost = false;
-				ghostShape = null;
-				this.pictureBox.Refresh();
-			}
-		}
-		private void pictureBox_Paint(object sender, PaintEventArgs e) {
-			e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-			e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-			Shape.__Draw(e.Graphics);
-			if(ghostShape != null) {
-				ghostShape.Draw(e.Graphics);
-			}
-		}
 	}
 }
