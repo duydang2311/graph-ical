@@ -15,13 +15,13 @@ namespace graphical {
 			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y);
 			if(shape != null) {
 				if(ghostShape != null) {
-					ghostShape.Ghost = false;
+					ghostShape.Hovering = false;
 				}
-				shape.Ghost = true;
+				shape.Hovering = true;
 				ghostShape = shape;
 				this.pictureBox.Refresh();
 			} else if(ghostShape != null) {
-				ghostShape.Ghost = false;
+				ghostShape.Hovering = false;
 				ghostShape = null;
 				this.pictureBox.Refresh();
 			}

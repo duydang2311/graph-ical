@@ -5,7 +5,7 @@ namespace graphical {
             this.radius = radius;
         }
         override public void Draw(System.Drawing.Graphics graphic) {
-            if(this.ghost) {
+            if(this.hovering) {
                 graphic.FillEllipse(System.Drawing.Brushes.Black, (int)(this.anchor.X * Shape.ratio), (int)(this.anchor.Y * Shape.ratio), (int)(this.radius * Shape.ratio), (int)(this.radius * Shape.ratio));
             } else {
                 graphic.DrawEllipse(new System.Drawing.Pen(this.color, (float)(2 * Shape.ratio)), (int)(this.anchor.X * Shape.ratio), (int)(this.anchor.Y * Shape.ratio), (int)(this.radius * Shape.ratio), (int)(this.radius * Shape.ratio));

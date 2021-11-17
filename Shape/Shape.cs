@@ -1,7 +1,7 @@
 namespace graphical {
     abstract class Shape {
         protected Point anchor;
-        protected bool ghost;
+        protected bool hovering;
         protected static System.Collections.Generic.List<Shape> shapes = new System.Collections.Generic.List<Shape>();
         protected static decimal ratio = 1.0m;
         protected System.Drawing.Color color;
@@ -9,9 +9,9 @@ namespace graphical {
             get => this.anchor;
             set { this.anchor = value; }
         }
-        public bool Ghost {
-            get => this.ghost;
-            set { this.ghost = value; }
+        public bool Hovering {
+            get => this.hovering;
+            set { this.hovering = value; }
         }
         public System.Drawing.Color Color {
             get => this.color;
@@ -20,7 +20,7 @@ namespace graphical {
         public Shape(Point anchor, System.Drawing.Color color) {
             this.anchor = anchor;
             this.color = color;
-            this.ghost = true;
+            this.hovering = true;
             Shape.shapes.Add(this);
         }
         public abstract void Draw(System.Drawing.Graphics graphics);
