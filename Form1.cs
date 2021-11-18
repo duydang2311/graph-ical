@@ -23,6 +23,9 @@ namespace graphical
 			this.pictureBox.MouseClick += new MouseEventHandler(pictureBox_MouseClick);
 			this.pictureBox.MouseWheel += new MouseEventHandler(pictureBox_MouseWheel);
 			this.pictureBox.MouseMove += new MouseEventHandler(pictureBox_MouseMove);
+			this.pictureBox.MouseDown += new MouseEventHandler(PictureBox_Drag_MouseDown);
+			this.pictureBox.MouseMove += new MouseEventHandler(PictureBox_Drag_MouseMove);
+			this.pictureBox.MouseUp += new MouseEventHandler(PictureBox_Drag_MouseUp);
 			this.pictureBox.Paint += new PaintEventHandler(pictureBox_Paint);
 		}
 		private void Form1_Load(object sender, EventArgs e) {
