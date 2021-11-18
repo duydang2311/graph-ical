@@ -25,5 +25,11 @@ namespace graphical {
             double ratioY = (double)(this.anchor.Y * ratio);
             return (System.Math.Sqrt(System.Math.Pow(ratioX + ratioRadius / 2 - point.X, 2) + System.Math.Pow(ratioY + ratioRadius / 2 - point.Y, 2))) <= ratioRadius / 2;
         }
+        public override int OffsetX {
+            get => this.radius / 2;
+        }
+        public override int OffsetY {
+            get => this.radius / 2;
+        }
     }
 }

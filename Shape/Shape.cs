@@ -22,9 +22,9 @@ namespace graphical {
             this.color = color;
             this.hovering = true;
             this.adjacency = new System.Collections.Generic.List<Shape>();
-            foreach(Shape shape in Shape.shapes) {
-                this.adjacency.Add(shape);
-            }
+            // foreach(Shape shape in Shape.shapes) {
+            //     this.adjacency.Add(shape);
+            // }
             Shape.shapes.Add(this);
         }
         public abstract void Draw(System.Drawing.Graphics graphics, decimal ratio);
@@ -41,6 +41,12 @@ namespace graphical {
                 return;
             }
             this.adjacency.RemoveAt(index);
+        }
+        public virtual int OffsetX {
+            get => 0;
+        }
+        public virtual int OffsetY {
+            get => 0;
         }
         public static Shape GetCollidedShape(Point point, decimal ratio) {
             foreach(Shape shape in Shape.shapes) {
