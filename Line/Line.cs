@@ -1,5 +1,5 @@
 namespace graphical {
-    abstract class Line {
+    class Line {
         protected Point start;
         protected Point end;
         protected float thickness;
@@ -18,10 +18,10 @@ namespace graphical {
             this.thickness = thickness;
             this.start = start;
             this.end = end; 
-            lines.Add(this);
+            // lines.Add(this);
         }
         public virtual void Draw(System.Drawing.Graphics graphics) {
-            graphics.DrawLine(new System.Drawing.Pen(this.color, this.thickness), this.start.X, this.start.Y, this.end.X, this.end.Y);
+            graphics.DrawLine(new System.Drawing.Pen(this.color, this.thickness), (int)(this.start.X * Shape.Ratio), (int)(this.start.Y * Shape.Ratio), (int)(this.end.X * Shape.Ratio), (int)(this.end.Y * Shape.Ratio));
         }
         public static void __Draw(System.Drawing.Graphics graphics) {
             foreach(Line line in lines) {
