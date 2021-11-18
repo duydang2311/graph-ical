@@ -1,10 +1,11 @@
 namespace graphical {
     abstract class Shape {
-        protected Point anchor;
-        protected bool hovering;
         protected static System.Collections.Generic.List<Shape> shapes = new System.Collections.Generic.List<Shape>();
         protected static decimal ratio = 1.0m;
+        protected Point anchor;
+        protected bool hovering;
         protected System.Drawing.Color color;
+        protected System.Collections.Generic.List<Shape> adjacency; 
         public Point Anchor {
             get => this.anchor;
             set { this.anchor = value; }
@@ -21,10 +22,27 @@ namespace graphical {
             this.anchor = anchor;
             this.color = color;
             this.hovering = true;
+            this.adjacency = new System.Collections.Generic.List<Shape>();
+            foreach(Shape shape in Shape.shapes) {
+                this.adjacency.Add(shape);
+            }
             Shape.shapes.Add(this);
         }
         public abstract void Draw(System.Drawing.Graphics graphics);
         public abstract bool IsPointCollided(Point point);
+        public void addAdjacency(Shape shape) {
+            if(this.adjacency.IndexOf(shape) != -1) {
+                return;
+            }
+            this.adjacency.Add(shape);
+        }
+        public void removeAdjacency(Shape shape) {
+            int index = this.adjacency.IndexOf(shape);
+            if(index == -1) {
+                return;
+            }
+            this.adjacency.RemoveAt(index);
+        }
         public static Shape GetCollidedShape(Point point) {
             foreach(Shape shape in Shape.shapes) {
                 if(shape.IsPointCollided(point)) {
@@ -46,6 +64,9 @@ namespace graphical {
             int index = Shape.shapes.IndexOf(shape);
             if(index == -1) return;
             Shape.shapes.RemoveAt(index);
+            foreach(Shape s in Shape.shapes) {
+                s.removeAdjacency(shape);
+            }
         }
         public static decimal Ratio {
             get => Shape.ratio;
