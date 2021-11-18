@@ -20,12 +20,12 @@ namespace graphical {
             this.end = end; 
             // lines.Add(this);
         }
-        public virtual void Draw(System.Drawing.Graphics graphics) {
-            graphics.DrawLine(new System.Drawing.Pen(this.color, this.thickness), (int)(this.start.X * Shape.Ratio), (int)(this.start.Y * Shape.Ratio), (int)(this.end.X * Shape.Ratio), (int)(this.end.Y * Shape.Ratio));
+        public virtual void Draw(System.Drawing.Graphics graphics, decimal ratio) {
+            graphics.DrawLine(new System.Drawing.Pen(this.color, this.thickness), (int)(this.start.X * ratio), (int)(this.start.Y * ratio), (int)(this.end.X * ratio), (int)(this.end.Y * ratio));
         }
-        public static void __Draw(System.Drawing.Graphics graphics) {
+        public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
             foreach(Line line in lines) {
-                line.Draw(graphics);
+                line.Draw(graphics, ratio);
             }
         }
     }

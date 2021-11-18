@@ -6,9 +6,9 @@ namespace graphical {
 			e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 			e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
 			e.Graphics.Clear(System.Drawing.Color.White);
-			Shape.__Draw(e.Graphics);
+			Shape.__Draw(e.Graphics, this.ratio);
 			if(ghostShape != null) {
-				ghostShape.Draw(e.Graphics);
+				ghostShape.Draw(e.Graphics, this.ratio);
 			}
 		}
     }

@@ -1,7 +1,6 @@
 namespace graphical {
     abstract class Shape {
         protected static System.Collections.Generic.List<Shape> shapes = new System.Collections.Generic.List<Shape>();
-        protected static decimal ratio = 1.0m;
         protected Point anchor;
         protected bool hovering;
         protected System.Drawing.Color color;
@@ -28,8 +27,8 @@ namespace graphical {
             }
             Shape.shapes.Add(this);
         }
-        public abstract void Draw(System.Drawing.Graphics graphics);
-        public abstract bool IsPointCollided(Point point);
+        public abstract void Draw(System.Drawing.Graphics graphics, decimal ratio);
+        public abstract bool IsPointCollided(Point point, decimal ratio);
         public void addAdjacency(Shape shape) {
             if(this.adjacency.IndexOf(shape) != -1) {
                 return;
@@ -43,18 +42,18 @@ namespace graphical {
             }
             this.adjacency.RemoveAt(index);
         }
-        public static Shape GetCollidedShape(Point point) {
+        public static Shape GetCollidedShape(Point point, decimal ratio) {
             foreach(Shape shape in Shape.shapes) {
-                if(shape.IsPointCollided(point)) {
+                if(shape.IsPointCollided(point, ratio)) {
                     return shape;
                 }
             }
             return null;
         }
-        public static Shape GetCollidedShape(int x, int y) {
+        public static Shape GetCollidedShape(int x, int y, decimal ratio) {
             Point point = new Point(x, y);
             foreach(Shape shape in Shape.shapes) {
-                if(shape.IsPointCollided(point)) {
+                if(shape.IsPointCollided(point, ratio)) {
                     return shape;
                 }
             }
@@ -68,13 +67,9 @@ namespace graphical {
                 s.removeAdjacency(shape);
             }
         }
-        public static decimal Ratio {
-            get => Shape.ratio;
-            set { Shape.ratio = value; }
-        }
-        public static void __Draw(System.Drawing.Graphics graphics) {
+        public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
             foreach(Shape shape in Shape.shapes) {
-                shape.Draw(graphics);
+                shape.Draw(graphics, ratio);
             }
         }
     }

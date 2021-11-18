@@ -13,7 +13,6 @@ namespace graphical
 	public partial class Form1 : Form
 	{
 		private bool cursorState;
-		private decimal ratio;
 		private Shape ghostShape;
 		public Form1()
 		{
