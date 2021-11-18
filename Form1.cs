@@ -45,13 +45,21 @@ namespace graphical
 				this.Cursor = Cursors.Default;
 				this.cursorState = CursorStates.Select;
 			} else {
-				this.Cursor = Cursors.Cross;
+				if(this.hoveringShape != null) {
+					this.Cursor = Cursors.Hand;
+				} else {
+					this.Cursor = Cursors.Cross;
+				}
 				this.cursorState = CursorStates.Add;
 			}
 		}
 		private void Form1_KeyUp(object sender, KeyEventArgs e) {
 			if(!e.Control) {
-				this.Cursor = Cursors.Cross;
+				if(this.hoveringShape != null) {
+					this.Cursor = Cursors.Hand;
+				} else {
+					this.Cursor = Cursors.Cross;
+				}
 				this.cursorState = CursorStates.Add;
 			}
 		}
