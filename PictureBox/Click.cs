@@ -9,6 +9,8 @@ namespace graphical {
 			}
 			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y, this.ratio);
 			if(shape != null) {
+				Shape.Remove(shape);
+				this.pictureBox.Refresh();
 				return;
 			}
 			const int size = 70;
