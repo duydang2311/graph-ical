@@ -14,6 +14,10 @@ namespace graphical {
             } else {
                 graphic.DrawEllipse(new System.Drawing.Pen(this.color, (float)(2 * Shape.ratio)), (int)(this.anchor.X * Shape.ratio), (int)(this.anchor.Y * Shape.ratio), (int)(this.radius * Shape.ratio), (int)(this.radius * Shape.ratio));
             }
+            Point point = new Point(this.anchor.X + (int)(this.radius / 2), this.anchor.Y + (int)(this.radius / 2));
+            foreach(Circle shape in this.adjacency) {
+                new Line(System.Drawing.Color.Black, 2.0f, point, new Point(shape.Anchor.X + (int)(shape.radius / 2), shape.Anchor.Y + (int)(shape.radius / 2))).Draw(graphic);
+            }
         }
         public override bool IsPointCollided(Point point) {
             double ratioRadius = (double)(this.radius * Shape.ratio);
