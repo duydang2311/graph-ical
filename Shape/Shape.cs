@@ -28,6 +28,7 @@ namespace graphical {
             Shape.shapes.Add(this);
         }
         public abstract void Draw(System.Drawing.Graphics graphics, decimal ratio);
+        public abstract void DrawAdjacentLines(System.Drawing.Graphics graphics, decimal ratio);
         public abstract bool IsPointCollided(Point point, decimal ratio);
         public void addAdjacency(Shape shape) {
             if(this.adjacency.IndexOf(shape) != -1) {
@@ -74,6 +75,9 @@ namespace graphical {
             }
         }
         public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
+            foreach(Shape shape in Shape.shapes) {
+                shape.DrawAdjacentLines(graphics, ratio);
+            }
             foreach(Shape shape in Shape.shapes) {
                 shape.Draw(graphics, ratio);
             }

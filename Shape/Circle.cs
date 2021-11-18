@@ -13,7 +13,10 @@ namespace graphical {
                 graphic.FillEllipse(System.Drawing.Brushes.Black, (int)(this.anchor.X * ratio), (int)(this.anchor.Y * ratio), (int)(this.radius * ratio), (int)(this.radius * ratio));
             } else {
                 graphic.DrawEllipse(new System.Drawing.Pen(this.color, (float)(2 * ratio)), (int)(this.anchor.X * ratio), (int)(this.anchor.Y * ratio), (int)(this.radius * ratio), (int)(this.radius * ratio));
+                graphic.FillEllipse(System.Drawing.Brushes.White, (int)(this.anchor.X * ratio), (int)(this.anchor.Y * ratio), (int)(this.radius * ratio), (int)(this.radius * ratio));
             }
+        }
+        override public void DrawAdjacentLines(System.Drawing.Graphics graphic, decimal ratio) {
             Point point = new Point(this.anchor.X + (int)(this.radius / 2), this.anchor.Y + (int)(this.radius / 2));
             foreach(Circle shape in this.adjacency) {
                 new Line(System.Drawing.Color.Black, 2.0f, point, new Point(shape.Anchor.X + (int)(shape.radius / 2), shape.Anchor.Y + (int)(shape.radius / 2))).Draw(graphic, ratio);
