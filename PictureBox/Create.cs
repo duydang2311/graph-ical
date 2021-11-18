@@ -4,10 +4,11 @@ using System.Windows.Forms;
 namespace graphical {
 	public partial class Form1 : Form {
 		private void pictureBox_MouseClick(object sender, MouseEventArgs e) {
+			if(this.cursorState != CursorStates.Add || draggedShape != null) {
+				return;
+			}
 			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y, this.ratio);
 			if(shape != null) {
-				Shape.Remove(shape);
-				this.pictureBox.Refresh();
 				return;
 			}
 			const int size = 70;

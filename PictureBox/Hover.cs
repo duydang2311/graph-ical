@@ -5,15 +5,15 @@ namespace graphical {
 		private void pictureBox_MouseMove(object sender, MouseEventArgs e) {
 			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y, this.ratio);
 			if(shape != null) {
-				if(ghostShape != null) {
-					ghostShape.Hovering = false;
+				if(hoveringShape != null) {
+					hoveringShape.Hovering = false;
 				}
 				shape.Hovering = true;
-				ghostShape = shape;
+				hoveringShape = shape;
 				this.pictureBox.Refresh();
-			} else if(ghostShape != null) {
-				ghostShape.Hovering = false;
-				ghostShape = null;
+			} else if(hoveringShape != null) {
+				hoveringShape.Hovering = false;
+				hoveringShape = null;
 				this.pictureBox.Refresh();
 			}
 		}

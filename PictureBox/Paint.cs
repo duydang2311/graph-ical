@@ -7,8 +7,8 @@ namespace graphical {
 			e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
 			e.Graphics.Clear(System.Drawing.Color.White);
 			Shape.__Draw(e.Graphics, this.ratio);
-			if(ghostShape != null) {
-				ghostShape.Draw(e.Graphics, this.ratio);
+			if(hoveringShape != null) {
+				hoveringShape.Draw(e.Graphics, this.ratio);
 			}
 		}
     }

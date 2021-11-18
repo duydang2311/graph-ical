@@ -13,7 +13,7 @@ namespace graphical
 	public partial class Form1 : Form
 	{
 		private CursorStates cursorState;
-		private Shape ghostShape;
+		private Shape hoveringShape;
 		public Form1()
 		{
 			InitializeComponent();
