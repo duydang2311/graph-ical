@@ -12,7 +12,7 @@ namespace graphical
 {
 	public partial class Form1 : Form
 	{
-		private bool cursorState;
+		private CursorStates cursorState;
 		private Shape ghostShape;
 		public Form1()
 		{
@@ -27,7 +27,7 @@ namespace graphical
 		}
 		private void Form1_Load(object sender, EventArgs e) {
 			this.ratio = 1.0m;
-			this.cursorState = true;
+			this.cursorState = CursorStates.Add;
 			this.Cursor = Cursors.Cross;
 			this.SetStyle(ControlStyles.UserPaint, true);
 			this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -40,16 +40,16 @@ namespace graphical
 		private void Form1_KeyDown(object sender, KeyEventArgs e) {
 			if(e.Control) {
 				this.Cursor = Cursors.Default;
-				this.cursorState = false;
+				this.cursorState = CursorStates.Select;
 			} else {
 				this.Cursor = Cursors.Cross;
-				this.cursorState = true;
+				this.cursorState = CursorStates.Add;
 			}
 		}
 		private void Form1_KeyUp(object sender, KeyEventArgs e) {
 			if(!e.Control) {
 				this.Cursor = Cursors.Cross;
-				this.cursorState = true;
+				this.cursorState = CursorStates.Add;
 			}
 		}
 	}
