@@ -1,6 +1,10 @@
 namespace graphical {
     class Circle : Shape {
         protected int radius;
+        public int Radius {
+            get => this.radius;
+            set { this.radius = value; }
+        }
         public Circle(Point point, int radius, System.Drawing.Color color) : base(point, color) {
             this.radius = radius;
         }
