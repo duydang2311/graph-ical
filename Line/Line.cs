@@ -21,7 +21,10 @@ namespace graphical {
             // lines.Add(this);
         }
         public virtual void Draw(System.Drawing.Graphics graphics, decimal ratio) {
-            graphics.DrawLine(new System.Drawing.Pen(this.color, this.thickness), (int)(this.start.X * ratio), (int)(this.start.Y * ratio), (int)(this.end.X * ratio), (int)(this.end.Y * ratio));
+            System.Drawing.Pen p = new System.Drawing.Pen(this.color, this.thickness * (float)ratio);
+            Util.Normalize(this.start, this.end, out float vx, out float vy);
+            graphics.DrawLine(p, (int)(this.start.X * ratio), (int)(this.start.Y * ratio), (int)(this.end.X * ratio), (int)(this.end.Y * ratio));
+            Util.DrawArrowHead(graphics, p, this.end, vx, vy, 7, ratio);
         }
         public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
             foreach(Line line in lines) {
