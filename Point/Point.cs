@@ -1,5 +1,5 @@
 namespace graphical {
-    class Point {
+    public class Point {
         private int x;
         private int y;
         public int X {
