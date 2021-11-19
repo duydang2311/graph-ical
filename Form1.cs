@@ -20,7 +20,7 @@ namespace graphical
 			this.Resize += new EventHandler(Form1_Resize);
 			this.KeyDown += new KeyEventHandler(Form1_KeyDown);
 			this.KeyUp += new KeyEventHandler(Form1_KeyUp);
-			this.pictureBox.MouseClick += new MouseEventHandler(pictureBox_MouseClick);
+			this.pictureBox.MouseClick += new MouseEventHandler(PictureBox_LeftClick_MouseClick);
 			this.pictureBox.MouseWheel += new MouseEventHandler(pictureBox_MouseWheel);
 			this.pictureBox.MouseMove += new MouseEventHandler(pictureBox_MouseMove);
 			this.pictureBox.MouseDown += new MouseEventHandler(PictureBox_Drag_MouseDown);

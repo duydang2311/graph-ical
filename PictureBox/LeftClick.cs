@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace graphical {
 	public partial class Form1 : Form {
-		private void pictureBox_MouseClick(object sender, MouseEventArgs e) {
+		private void PictureBox_LeftClick_MouseClick(object sender, MouseEventArgs e) {
 			if(this.cursorState != CursorStates.Add || draggedShape != null) {
 				return;
 			}
