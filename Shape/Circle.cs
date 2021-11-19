@@ -17,9 +17,11 @@ namespace graphical {
             }
         }
         override public void DrawAdjacentLines(System.Drawing.Graphics graphic, decimal ratio) {
-            Point point = new Point(this.anchor.X + (int)(this.radius / 2), this.anchor.Y + (int)(this.radius / 2));
             foreach(Circle shape in this.adjacency) {
-                new Line(System.Drawing.Color.Black, 2.0f, point, new Point(shape.Anchor.X + (int)(shape.radius / 2), shape.Anchor.Y + (int)(shape.radius / 2))).Draw(graphic, ratio);
+                Util.Normalize(this.Anchor.X + this.Radius / 2, this.Anchor.Y + this.Radius / 2, shape.Anchor.X + shape.Radius / 2, shape.Anchor.Y + shape.Radius / 2, out float vx, out float vy);
+                Point start = new Point((int)((this.anchor.X + this.Radius / 2) + vx * this.Radius / 2), (int)((this.anchor.Y + this.Radius / 2) + vy * this.Radius / 2));
+                Point end = new Point((int)((shape.anchor.X + shape.Radius / 2) - vx * shape.Radius / 2), (int)((shape.anchor.Y + shape.Radius / 2) - vy * shape.Radius / 2));
+                new Line(System.Drawing.Color.Black, 2.0f, start, end).Draw(graphic, ratio);
             }
         }
         public override bool IsPointCollided(Point point, decimal ratio) {
