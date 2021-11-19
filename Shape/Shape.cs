@@ -76,10 +76,10 @@ namespace graphical {
         }
         public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
             foreach(Shape shape in Shape.shapes) {
-                shape.DrawAdjacentLines(graphics, ratio);
+                shape.Draw(graphics, ratio);
             }
             foreach(Shape shape in Shape.shapes) {
-                shape.Draw(graphics, ratio);
+                shape.DrawAdjacentLines(graphics, ratio);
             }
         }
     }
