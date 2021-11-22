@@ -26,14 +26,14 @@ namespace graphical {
         }
         public abstract void Draw(System.Drawing.Graphics graphics, decimal ratio);
         public abstract bool IsPointCollided(Point point, decimal ratio);
-        public void addAdjacency(Shape shape) {
+        public void AddAdjacency(Shape shape) {
             if(this.adjacency.IndexOf(shape) != -1) {
                 return;
             }
             this.adjacency.Add(shape);
             new Line(System.Drawing.Color.Black, 2.0f, this, shape);
         }
-        public void removeAdjacency(Shape shape) {
+        public void RemoveAdjacency(Shape shape) {
             int index = this.adjacency.IndexOf(shape);
             if(index == -1) {
                 return;
@@ -68,7 +68,7 @@ namespace graphical {
             if(index == -1) return;
             Shape.shapes.RemoveAt(index);
             foreach(Shape s in Shape.shapes) {
-                s.removeAdjacency(shape);
+                s.RemoveAdjacency(shape);
             }
         }
         public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
