@@ -13,7 +13,6 @@ namespace graphical
 	public partial class Form1 : Form
 	{
 		private CursorStates cursorState;
-		private Shape hoveringShape;
 		public Form1()
 		{
 			InitializeComponent();
@@ -46,7 +45,7 @@ namespace graphical
 				this.Cursor = Cursors.Default;
 				this.cursorState = CursorStates.Select;
 			} else {
-				if(this.hoveringShape != null) {
+				if(this.hoveringObject != null) {
 					this.Cursor = Cursors.Hand;
 				} else {
 					this.Cursor = Cursors.Cross;
@@ -56,7 +55,7 @@ namespace graphical
 		}
 		private void Form1_KeyUp(object sender, KeyEventArgs e) {
 			if(!e.Control) {
-				if(this.hoveringShape != null) {
+				if(this.hoveringObject != null) {
 					this.Cursor = Cursors.Hand;
 				} else {
 					this.Cursor = Cursors.Cross;
