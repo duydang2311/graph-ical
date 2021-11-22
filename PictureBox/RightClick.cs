@@ -4,13 +4,20 @@ using System.Windows.Forms;
 namespace graphical {
 	public partial class Form1 : Form {
 		private void PictureBox_RightClick_MouseClick(object sender, MouseEventArgs e) {
-			if(e.Button != MouseButtons.Right || this.cursorState != CursorStates.Add) {
+			if(e.Button != MouseButtons.Right || this.cursorState != CursorStates.Add || hoveringObject == null) {
 				return;
 			}
-			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y, this.ratio);
-			if(shape != null) {
-                Shape.Remove(shape);
-                this.pictureBox.Refresh();
+			if(hoveringObject != null) {
+				if(hoveringObject is Shape) {
+					Shape.Remove((Shape)hoveringObject);
+					this.pictureBox.Refresh();
+				} else if(hoveringObject is Line) {
+					Line line = (Line)hoveringObject;
+					line.Start.RemoveAdjacency(line.End);
+					line.End.RemoveAdjacency(line.Start);
+					Line.Remove(line);
+					this.pictureBox.Refresh();
+				}
 			}
 		}
     }
