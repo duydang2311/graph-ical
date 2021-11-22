@@ -16,12 +16,6 @@ namespace graphical {
                 graphic.FillEllipse(System.Drawing.Brushes.White, (int)(this.anchor.X * ratio), (int)(this.anchor.Y * ratio), (int)(this.radius * ratio), (int)(this.radius * ratio));
             }
         }
-        override public void DrawAdjacentLines(System.Drawing.Graphics graphic, decimal ratio) {
-            Line.Clear();
-            foreach(Circle shape in this.adjacency) {
-                new Line(System.Drawing.Color.Black, 2.0f, this, shape).Draw(graphic, ratio);
-            }
-        }
         public override bool IsPointCollided(Point point, decimal ratio) {
             double ratioRadius = (double)(this.radius * ratio);
             double ratioX = (double)(this.anchor.X * ratio);
