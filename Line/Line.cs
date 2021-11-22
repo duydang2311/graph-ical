@@ -33,5 +33,8 @@ namespace graphical {
                 line.Draw(graphics, ratio);
             }
         }
+        public static void Clear() {
+            Line.lines.Clear();
+        }
     }
 }
