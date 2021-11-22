@@ -62,6 +62,11 @@ namespace graphical {
         public static void Clear() {
             Line.lines.Clear();
         }
+        public static void Remove(Line line) {
+            int index = Line.lines.IndexOf(line);
+            if(index == -1) return;
+            Line.lines.RemoveAt(index);
+        }
         public static Line GetCollidedLine(int x, int y, decimal ratio) {
             float startDist;
             float endDist;
