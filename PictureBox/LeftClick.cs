@@ -8,16 +8,29 @@ namespace graphical {
 			if(e.Button != MouseButtons.Left || this.cursorState != CursorStates.Add || draggedShape != null) {
 				return;
 			}
-			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y, this.ratio);
-			if(shape != null) {
-                if(this.firstClickShape == null) {
-                    this.firstClickShape = shape;
-                } else if(shape != this.firstClickShape) {
-                    this.firstClickShape.addAdjacency(shape);
-					this.firstClickShape = null;
-                    this.pictureBox.Refresh();
-                } else {
-					this.firstClickShape = null;
+			if(hoveringObject != null) {
+				if(hoveringObject is Shape) {
+					Shape shape = (Shape)hoveringObject;
+					if(this.firstClickShape == null) {
+						this.firstClickShape = shape;
+					} else if(shape != this.firstClickShape) {
+						this.firstClickShape.AddAdjacency(shape);
+						this.firstClickShape = null;
+						this.pictureBox.Refresh();
+					} else {
+						this.firstClickShape = null;
+					}
+				} else if(hoveringObject is Line) {
+					Line line = (Line)hoveringObject;
+					int side = Line.GetSideOfPoint(line, e.Location.X, e.Location.Y);
+					if(side == -1) {
+						line.StartArrow = !line.StartArrow;
+					} else if(side == 1) {
+						line.EndArrow = !line.EndArrow;
+					} else {
+						return;
+					}
+					this.pictureBox.Refresh();
 				}
 				return;
 			}
