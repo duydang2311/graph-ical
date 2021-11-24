@@ -15,7 +15,7 @@ namespace graphical {
                     using(System.Drawing.StringFormat stringFormat = new System.Drawing.StringFormat()) {
                         stringFormat.LineAlignment = System.Drawing.StringAlignment.Center;
                         stringFormat.Alignment = System.Drawing.StringAlignment.Center;
-                        graphic.DrawString(this.text, font, System.Drawing.Brushes.White, (this.anchor.X + this.OffsetX) * (float)ratio, (this.anchor.Y + this.OffsetY) * (float)ratio, stringFormat);
+                        graphic.DrawString(this.text, font, System.Drawing.Brushes.White, this.CenterX * (float)ratio, this.CenterY * (float)ratio, stringFormat);
                     }
                 }
             } else {
@@ -26,7 +26,7 @@ namespace graphical {
                         using(System.Drawing.StringFormat stringFormat = new System.Drawing.StringFormat()) {
                             stringFormat.LineAlignment = System.Drawing.StringAlignment.Center;
                             stringFormat.Alignment = System.Drawing.StringAlignment.Center;
-                            graphic.DrawString(this.text, font, System.Drawing.Brushes.Black, (this.anchor.X + this.OffsetX) * (float)ratio, (this.anchor.Y + this.OffsetY) * (float)ratio, stringFormat);
+                            graphic.DrawString(this.text, font, System.Drawing.Brushes.Black, this.CenterX * (float)ratio, this.CenterY * (float)ratio, stringFormat);
                         }
                     }
                 }
@@ -43,6 +43,12 @@ namespace graphical {
         }
         public override int OffsetY {
             get => this.radius / 2;
+        }
+        public override int CenterX {
+            get => this.anchor.X + this.radius / 2;
+        }
+        public override int CenterY {
+            get => this.anchor.Y + this.radius / 2;
         }
     }
 }

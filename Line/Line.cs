@@ -44,8 +44,8 @@ namespace graphical {
                 p.Color = System.Drawing.Color.Red;
             }
             Util.Normalize(this.start.Anchor.X, this.start.Anchor.Y, this.end.Anchor.X, this.end.Anchor.Y, out float vx, out float vy);
-            Point start = new Point((int)((this.start.Anchor.X + this.start.OffsetX) + vx * this.start.OffsetX), (int)((this.start.Anchor.Y + this.start.OffsetY) + vy * this.start.OffsetY));
-            Point end = new Point((int)((this.end.Anchor.X + this.end.OffsetX) - vx * this.end.OffsetX), (int)((this.end.Anchor.Y + this.end.OffsetY) - vy * this.end.OffsetY));
+            Point start = new Point((int)(this.start.CenterX + vx * this.start.OffsetX), (int)(this.start.CenterY + vy * this.start.OffsetY));
+            Point end = new Point((int)(this.end.CenterX - vx * this.end.OffsetX), (int)(this.end.CenterY - vy * this.end.OffsetY));
             graphics.DrawLine(p, (int)(start.X * ratio), (int)(start.Y * ratio), (int)(end.X * ratio), (int)(end.Y * ratio));
             if(this.endArrow) {
                 Util.DrawArrowHead(graphics, p, end, vx, vy, 7, ratio);
@@ -73,14 +73,14 @@ namespace graphical {
             float tempX;
             float tempY;
             foreach(Line line in Line.lines) {
-                tempX = x - line.start.Anchor.X * (float)ratio - line.start.OffsetX * (float)ratio;
-                tempY = y - line.start.Anchor.Y * (float)ratio - line.start.OffsetY * (float)ratio;
+                tempX = x - line.start.CenterX * (float)ratio;
+                tempY = y - line.start.CenterY * (float)ratio;
                 startDist = (float)System.Math.Sqrt(tempX * tempX + tempY * tempY);
-                tempX = x - line.end.Anchor.X * (float)ratio - line.end.OffsetX * (float)ratio;
-                tempY = y - line.end.Anchor.Y * (float)ratio - line.end.OffsetY * (float)ratio;
+                tempX = x - line.end.CenterX * (float)ratio;
+                tempY = y - line.end.CenterY * (float)ratio;
                 endDist = (float)System.Math.Sqrt(tempX * tempX + tempY * tempY);
-                tempX = line.start.Anchor.X * (float)ratio - line.end.Anchor.X * (float)ratio;
-                tempY = line.start.Anchor.Y * (float)ratio - line.end.Anchor.Y * (float)ratio;
+                tempX = (line.start.Anchor.X - line.end.Anchor.X) * (float)ratio;
+                tempY = (line.start.Anchor.Y - line.end.Anchor.Y) * (float)ratio;
                 if((int)(startDist + endDist - (float)System.Math.Sqrt(tempX * tempX + tempY * tempY)) == 0) {
                     return line;
                 }
@@ -92,11 +92,11 @@ namespace graphical {
             float percentage;
             float tempX;
             float tempY;
-            tempX = x - line.start.Anchor.X * (float)ratio - line.start.OffsetX * (float)ratio;
-            tempY = y - line.start.Anchor.Y * (float)ratio - line.start.OffsetY * (float)ratio;
+            tempX = x - line.start.CenterX * (float)ratio;
+            tempY = y - line.start.CenterY * (float)ratio;
             startDist = (float)System.Math.Sqrt(tempX * tempX + tempY * tempY) - line.start.OffsetX * (float)ratio;
-            tempX = line.start.Anchor.X * (float)ratio - line.end.Anchor.X * (float)ratio;
-            tempY = line.start.Anchor.Y * (float)ratio - line.end.Anchor.Y * (float)ratio;
+            tempX = (line.start.Anchor.X - line.end.Anchor.X) * (float)ratio;
+            tempY = (line.start.Anchor.Y - line.end.Anchor.Y) * (float)ratio;
             percentage = startDist / ((float)System.Math.Sqrt(tempX * tempX + tempY * tempY) - line.start.OffsetX * (float)ratio - line.end.OffsetX * (float)ratio);
             if(percentage >= 0.80) {
                 return 1;
