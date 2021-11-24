@@ -5,6 +5,7 @@ namespace graphical {
         protected bool hovering;
         protected System.Drawing.Color color;
         protected System.Collections.Generic.List<Shape> adjacency; 
+        protected string text;
         public Point Anchor {
             get => this.anchor;
             set { this.anchor = value; }
@@ -17,11 +18,16 @@ namespace graphical {
             get => this.color;
             set { this.color = value; }
         }
+        public string Text {
+            get => this.text;
+            set { this.text = value; }
+        }
         public Shape(Point anchor, System.Drawing.Color color) {
             this.anchor = anchor;
             this.color = color;
             this.hovering = true;
             this.adjacency = new System.Collections.Generic.List<Shape>();
+            this.text = "Text";
             Shape.shapes.Add(this);
         }
         public abstract void Draw(System.Drawing.Graphics graphics, decimal ratio);
