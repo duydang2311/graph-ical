@@ -17,12 +17,16 @@ namespace graphical {
 						((Shape)hoveringObject).Hovering = false;
 					} else if(hoveringObject is Line) {
 						((Line)hoveringObject).Highlighted = false;
+					} else if(hoveringObject is Loop) {
+						((Loop)hoveringObject).Highlight = System.Drawing.Color.Red;
 					}
 				}
 				if(obj is Shape) {
 					((Shape)obj).Hovering = true;
 				} else if(obj is Line) {
 					((Line)obj).Highlighted = true;
+				} else if(hoveringObject is Loop) {
+					((Loop)hoveringObject).Highlight = System.Drawing.Color.Red;
 				}
 				hoveringObject = obj;
 				this.pictureBox.Refresh();
@@ -34,6 +38,8 @@ namespace graphical {
 				((Shape)hoveringObject).Hovering = false;
 			} else if(hoveringObject is Line) {
 				((Line)hoveringObject).Highlighted = false;
+			} else if(hoveringObject is Loop) {
+				((Loop)hoveringObject).Highlight = System.Drawing.Color.Transparent;
 			}
 			hoveringObject = null;
 			this.pictureBox.Refresh();
@@ -42,12 +48,18 @@ namespace graphical {
 			}
 		}
 		private void pictureBox_MouseMove(object sender, MouseEventArgs e) {
-			Shape shape = Shape.GetCollidedShape(e.Location.X, e.Location.Y, this.ratio);
-			if(shape != null) {
-				Hover(shape);
-			} else {
-				Hover(Line.GetCollidedLine(e.Location.X, e.Location.Y, this.ratio));
+			object obj = Shape.GetCollidedShape(e.Location.X, e.Location.Y, this.ratio);
+			if(obj == null) {
+				obj = Line.GetCollidedLine(e.Location.X, e.Location.Y, this.ratio);
+				if(obj == null) {
+					obj = Loop.GetCollidedLoop(e.Location.X, e.Location.Y, this.ratio);
+				}
 			}
+			if(obj != null) {
+				Hover(obj);
+				return;
+			}
+			CancelHover();
 		}
     }
 }
