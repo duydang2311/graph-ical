@@ -52,6 +52,12 @@ namespace graphical {
         public virtual int OffsetY {
             get => 0;
         }
+        public virtual int CenterX {
+            get => 0;
+        }
+        public virtual int CenterY {
+            get => 0;
+        }
         public static Shape GetCollidedShape(Point point, decimal ratio) {
             foreach(Shape shape in Shape.shapes) {
                 if(shape.IsPointCollided(point, ratio)) {
