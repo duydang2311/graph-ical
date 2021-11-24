@@ -87,7 +87,6 @@ namespace graphical {
             foreach(Shape shape in Shape.shapes) {
                 shape.Draw(graphics, ratio);
             }
-            Line.__Draw(graphics, ratio);
         }
     }
 }
