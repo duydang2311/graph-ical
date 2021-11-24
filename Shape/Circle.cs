@@ -11,7 +11,7 @@ namespace graphical {
         override public void Draw(System.Drawing.Graphics graphic, decimal ratio) {
             if(this.hovering) {
                 graphic.FillEllipse(System.Drawing.Brushes.Black, (int)(this.anchor.X * ratio), (int)(this.anchor.Y * ratio), (int)(this.radius * ratio), (int)(this.radius * ratio));
-                using(System.Drawing.Font font = new System.Drawing.Font("Arial", 14)) {
+                using(System.Drawing.Font font = new System.Drawing.Font("Arial", 20 * (float)ratio, System.Drawing.GraphicsUnit.Pixel)) {
                     using(System.Drawing.StringFormat stringFormat = new System.Drawing.StringFormat()) {
                         stringFormat.LineAlignment = System.Drawing.StringAlignment.Center;
                         stringFormat.Alignment = System.Drawing.StringAlignment.Center;
@@ -22,7 +22,7 @@ namespace graphical {
                 using (System.Drawing.Pen pen = new System.Drawing.Pen(this.color, (float)(2 * ratio))) {
                     graphic.DrawEllipse(pen, (int)(this.anchor.X * ratio), (int)(this.anchor.Y * ratio), (int)(this.radius * ratio), (int)(this.radius * ratio));
                     graphic.FillEllipse(System.Drawing.Brushes.White, (int)(this.anchor.X * ratio), (int)(this.anchor.Y * ratio), (int)(this.radius * ratio), (int)(this.radius * ratio));
-                    using(System.Drawing.Font font = new System.Drawing.Font("Arial", 14)) {
+                    using(System.Drawing.Font font = new System.Drawing.Font("Arial", 20 * (float)ratio, System.Drawing.GraphicsUnit.Pixel)) {
                         using(System.Drawing.StringFormat stringFormat = new System.Drawing.StringFormat()) {
                             stringFormat.LineAlignment = System.Drawing.StringAlignment.Center;
                             stringFormat.Alignment = System.Drawing.StringAlignment.Center;
