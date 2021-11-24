@@ -2,7 +2,7 @@ namespace graphical {
     class Line {
         protected Shape start;
         protected Shape end;
-        protected float thickness;
+        static protected float thickness = 2.0f;
         protected System.Drawing.Color color;
         protected static System.Collections.Generic.List<Line> lines = new System.Collections.Generic.List<Line>();
         protected bool highlighted;
@@ -28,9 +28,12 @@ namespace graphical {
             get => this.endArrow;
             set { this.endArrow = value; }
         }
-        public Line(System.Drawing.Color color, float thickness, Shape start, Shape end) {
+        public static float Thickness {
+            get => Line.thickness;
+            set { Line.thickness = value; }
+        }
+        public Line(System.Drawing.Color color, Shape start, Shape end) {
             this.color = color;
-            this.thickness = thickness;
             this.start = start;
             this.end = end; 
             this.highlighted = false;
@@ -39,7 +42,7 @@ namespace graphical {
             lines.Add(this);
         }
         public virtual void Draw(System.Drawing.Graphics graphics, decimal ratio) {
-            System.Drawing.Pen p = new System.Drawing.Pen(this.color, this.thickness * (float)ratio);
+            System.Drawing.Pen p = new System.Drawing.Pen(this.color, Line.thickness * (float)ratio);
             if(highlighted) {
                 p.Color = System.Drawing.Color.Red;
             }

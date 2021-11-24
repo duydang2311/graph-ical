@@ -37,7 +37,7 @@ namespace graphical {
                 return;
             }
             this.adjacency.Add(shape);
-            new Line(System.Drawing.Color.Black, 2.0f, this, shape);
+            new Line(System.Drawing.Color.Black, this, shape);
         }
         public void RemoveAdjacency(Shape shape) {
             int index = this.adjacency.IndexOf(shape);
