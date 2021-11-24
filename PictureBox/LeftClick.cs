@@ -17,6 +17,8 @@ namespace graphical {
 						this.firstClickShape.AddAdjacency(shape);
 						this.firstClickShape = null;
 						this.pictureBox.Refresh();
+					} else if(shape == this.firstClickShape) {
+						new Loop(shape);
 					} else {
 						this.firstClickShape = null;
 					}
