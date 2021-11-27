@@ -26,10 +26,19 @@ namespace graphical {
 				graphics.DrawEllipse(pen, (shape.CenterX - shape.OffsetX) * (float)ratio, shape.CenterY * (float)ratio, 70 * (float)ratio, 70 * (float)ratio);
 			}
 		}
-		public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
-			foreach(Loop loop in Loop.loops) {
-				loop.Draw(graphics, ratio);
-			}
+		public static void __Draw(System.Drawing.Graphics graphics, decimal ratio, float width = 0.0f, float height = 0.0f) {
+            if(width == 0.0f || height == 0.0f) {
+                foreach(Loop loop in Loop.loops) {
+                    loop.Draw(graphics, ratio);
+                }
+            } else {
+                foreach(Loop loop in Loop.loops) {
+                    if(loop.shape.Anchor.X * (float)ratio > width || loop.shape.Anchor.Y * (float)ratio > height) {
+                        continue;
+                    }
+                    loop.Draw(graphics, ratio);
+                }
+            }
 		}
         public static Loop GetCollidedLoop(int x, int y, decimal ratio) {
         	float dx;

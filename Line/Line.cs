@@ -57,9 +57,19 @@ namespace graphical {
                 Util.DrawArrowHead(graphics, p, start, -vx, -vy, 7, ratio);
             }
         }
-        public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
-            foreach(Line line in lines) {
-                line.Draw(graphics, ratio);
+        public static void __Draw(System.Drawing.Graphics graphics, decimal ratio, float width = 0.0f, float height = 0.0f) {
+            if(width == 0.0f || height == 0.0f) {
+                foreach(Line line in lines) {
+                    line.Draw(graphics, ratio);
+                }
+            } else {
+                foreach(Line line in lines) {
+                    if((line.start.Anchor.X * (float)ratio > width && line.end.Anchor.X * (float)ratio > width)
+                    || (line.start.Anchor.Y * (float)ratio > height && line.end.Anchor.Y * (float)ratio > height)) {
+                        continue;
+                    }
+                    line.Draw(graphics, ratio);
+                }
             }
         }
         public static void Clear() {

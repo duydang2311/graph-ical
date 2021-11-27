@@ -92,9 +92,18 @@ namespace graphical {
                 s.RemoveAdjacency(shape);
             }
         }
-        public static void __Draw(System.Drawing.Graphics graphics, decimal ratio) {
-            foreach(Shape shape in Shape.shapes) {
-                shape.Draw(graphics, ratio);
+        public static void __Draw(System.Drawing.Graphics graphics, decimal ratio, float width = 0.0f, float height = 0.0f) {
+            if(width == 0.0f || height == 0.0f) {
+                foreach(Shape shape in Shape.shapes) {
+                    shape.Draw(graphics, ratio);
+                }
+            } else {
+                foreach(Shape shape in Shape.shapes) {
+                    if(shape.Anchor.X * (float)ratio > width || shape.Anchor.Y * (float)ratio > height) {
+                        continue;
+                    }
+                    shape.Draw(graphics, ratio);
+                }
             }
         }
     }
