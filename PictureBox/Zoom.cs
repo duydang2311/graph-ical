@@ -10,9 +10,15 @@ namespace graphical {
 		private void pictureBox_MouseWheel(object sender, MouseEventArgs e) {
 			if(e.Delta < 0) {
 				this.ratio -= 0.075m;
+				if(this.ratio <= 0.25m) {
+					this.ratio = 0.25m;
+				}
 				this.pictureBox.Refresh();
 			} else if(e.Delta > 0) {
 				this.ratio += 0.075m;
+				if(this.ratio >= 1.75m) {
+					this.ratio = 1.75m;
+				}
 				this.pictureBox.Refresh();
 			}
 		}
