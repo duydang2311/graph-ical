@@ -39,12 +39,12 @@ namespace graphical {
             return (System.Math.Sqrt(System.Math.Pow(ratioX + ratioRadius / 2 - point.X, 2) + System.Math.Pow(ratioY + ratioRadius / 2 - point.Y, 2))) <= ratioRadius / 2;
         }
         public override bool IsPointCollidedWithText(Point point, decimal ratio) {
-            System.Drawing.Font arial = new System.Drawing.Font("Arial", 20 * (float)ratio);
+            System.Drawing.Font arial = new System.Drawing.Font("Arial", 20 * (float)ratio, System.Drawing.GraphicsUnit.Pixel);
             System.Drawing.Size textSize = System.Windows.Forms.TextRenderer.MeasureText(this.text, arial);
-            float left = this.CenterX * (float)ratio - textSize.Width / 2 + 10.0f * (float)ratio;
-            float right = this.CenterX * (float)ratio + textSize.Width / 2 - 10.0f * (float)ratio;
-            float top = this.CenterY * (float)ratio - textSize.Height / 2 + 8.0f * (float)ratio;
-            float bottom = this.CenterY * (float)ratio + textSize.Height / 2 - 8.0f * (float)ratio;
+            float left = this.CenterX * (float)ratio - textSize.Width / 2;
+            float right = this.CenterX * (float)ratio + textSize.Width / 2;
+            float top = this.CenterY * (float)ratio - textSize.Height / 2;
+            float bottom = this.CenterY * (float)ratio + textSize.Height / 2;
             return (point.X >= left && point.X <= right && point.Y >= top && point.Y <= bottom);
         }
         public override int OffsetX {
