@@ -11,6 +11,17 @@ namespace graphical {
 			if(hoveringObject != null) {
 				if(hoveringObject is Shape) {
 					Shape shape = (Shape)hoveringObject;
+					if(shape.IsPointCollidedWithText(new Point(e.Location.X, e.Location.Y), this.ratio)) {
+						TextBoxForm prompt = TextBoxForm.Prompt(this, this.Location.X + e.Location.X, this.Location.Y + e.Location.Y, shape.Text);
+						switch(prompt.Result) {
+							case System.Windows.Forms.DialogResult.OK: {
+								shape.Text = prompt.InputText;
+								this.pictureBox.Refresh();
+								break;
+							}
+						}
+						return;
+					}
 					if(this.firstClickShape == null) {
 						this.firstClickShape = shape;
 					} else if(shape != this.firstClickShape) {
