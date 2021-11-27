@@ -19,7 +19,7 @@ namespace graphical {
 						this.pictureBox.Refresh();
 					} else if(shape == this.firstClickShape) {
 						if(shape.IsPointCollidedWithText(new Point(e.Location.X, e.Location.Y), this.ratio)) {
-							TextBoxForm prompt = TextBoxForm.Prompt(this, this.Location.X + shape.CenterX + shape.OffsetX, this.Location.Y + shape.CenterY, shape.Text);
+							TextBoxForm prompt = TextBoxForm.Prompt(this, this.Location.X + (int)((shape.CenterX + shape.OffsetX) * this.ratio), this.Location.Y + (int)(shape.CenterY * this.ratio), shape.Text);
 							switch(prompt.Result) {
 								case System.Windows.Forms.DialogResult.OK: {
 									shape.Text = prompt.InputText;
