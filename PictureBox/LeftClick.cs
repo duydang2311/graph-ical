@@ -11,17 +11,6 @@ namespace graphical {
 			if(hoveringObject != null) {
 				if(hoveringObject is Shape) {
 					Shape shape = (Shape)hoveringObject;
-					if(shape.IsPointCollidedWithText(new Point(e.Location.X, e.Location.Y), this.ratio)) {
-						TextBoxForm prompt = TextBoxForm.Prompt(this, this.Location.X + e.Location.X, this.Location.Y + e.Location.Y, shape.Text);
-						switch(prompt.Result) {
-							case System.Windows.Forms.DialogResult.OK: {
-								shape.Text = prompt.InputText;
-								this.pictureBox.Refresh();
-								break;
-							}
-						}
-						return;
-					}
 					if(this.firstClickShape == null) {
 						this.firstClickShape = shape;
 					} else if(shape != this.firstClickShape) {
@@ -29,7 +18,19 @@ namespace graphical {
 						this.firstClickShape = null;
 						this.pictureBox.Refresh();
 					} else if(shape == this.firstClickShape) {
-						new Loop(shape);
+						if(shape.IsPointCollidedWithText(new Point(e.Location.X, e.Location.Y), this.ratio)) {
+							TextBoxForm prompt = TextBoxForm.Prompt(this, this.Location.X + shape.CenterX + shape.OffsetX, this.Location.Y + shape.CenterY, shape.Text);
+							switch(prompt.Result) {
+								case System.Windows.Forms.DialogResult.OK: {
+									shape.Text = prompt.InputText;
+									this.pictureBox.Refresh();
+									break;
+								}
+							}
+						} else {
+							new Loop(shape);
+						}
+						this.firstClickShape = null;
 					} else {
 						this.firstClickShape = null;
 					}
