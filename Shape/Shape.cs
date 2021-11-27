@@ -32,6 +32,7 @@ namespace graphical {
         }
         public abstract void Draw(System.Drawing.Graphics graphics, decimal ratio);
         public abstract bool IsPointCollided(Point point, decimal ratio);
+        public abstract bool IsPointCollidedWithText(Point point, decimal ratio);
         public void AddAdjacency(Shape shape) {
             if(this.adjacency.IndexOf(shape) != -1) {
                 return;
@@ -61,6 +62,14 @@ namespace graphical {
         public static Shape GetCollidedShape(Point point, decimal ratio) {
             foreach(Shape shape in Shape.shapes) {
                 if(shape.IsPointCollided(point, ratio)) {
+                    return shape;
+                }
+            }
+            return null;
+        }
+        public static Shape GetTextCollidedShape(Point point, decimal ratio) {
+            foreach(Shape shape in Shape.shapes) {
+                if(shape.IsPointCollidedWithText(point, ratio)) {
                     return shape;
                 }
             }
