@@ -55,11 +55,7 @@ namespace graphical {
 					obj = Loop.GetCollidedLoop(e.Location.X, e.Location.Y, this.ratio);
 				}
 			}
-			if(obj != null) {
-				Hover(obj);
-				return;
-			}
-			CancelHover();
+			Hover(obj);
 		}
     }
 }
