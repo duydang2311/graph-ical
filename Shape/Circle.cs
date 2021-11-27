@@ -15,7 +15,7 @@ namespace graphical {
                     using(System.Drawing.StringFormat stringFormat = new System.Drawing.StringFormat()) {
                         stringFormat.LineAlignment = System.Drawing.StringAlignment.Center;
                         stringFormat.Alignment = System.Drawing.StringAlignment.Center;
-                        graphic.DrawString(this.text, font, System.Drawing.Brushes.White, this.CenterX * (float)ratio, this.CenterY * (float)ratio, stringFormat);
+                        graphic.DrawString(Util.ClampStringWidth(this.text, this.Radius * 1.4f), font, System.Drawing.Brushes.White, this.CenterX * (float)ratio, this.CenterY * (float)ratio, stringFormat);
                     }
                 }
             } else {
@@ -26,7 +26,7 @@ namespace graphical {
                         using(System.Drawing.StringFormat stringFormat = new System.Drawing.StringFormat()) {
                             stringFormat.LineAlignment = System.Drawing.StringAlignment.Center;
                             stringFormat.Alignment = System.Drawing.StringAlignment.Center;
-                            graphic.DrawString(this.text, font, System.Drawing.Brushes.Black, this.CenterX * (float)ratio, this.CenterY * (float)ratio, stringFormat);
+                            graphic.DrawString(Util.ClampStringWidth(this.text, this.Radius * 1.4f), font, System.Drawing.Brushes.Black, this.CenterX * (float)ratio, this.CenterY * (float)ratio, stringFormat);
                         }
                     }
                 }
@@ -40,7 +40,7 @@ namespace graphical {
         }
         public override bool IsPointCollidedWithText(Point point, decimal ratio) {
             System.Drawing.Font arial = new System.Drawing.Font("Arial", 20 * (float)ratio, System.Drawing.GraphicsUnit.Pixel);
-            System.Drawing.Size textSize = System.Windows.Forms.TextRenderer.MeasureText(this.text, arial);
+            System.Drawing.Size textSize = System.Windows.Forms.TextRenderer.MeasureText(Util.ClampStringWidth(this.text, this.Radius * 2), arial);
             float left = this.CenterX * (float)ratio - textSize.Width / 2;
             float right = this.CenterX * (float)ratio + textSize.Width / 2;
             float top = this.CenterY * (float)ratio - textSize.Height / 2;
