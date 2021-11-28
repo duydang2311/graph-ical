@@ -13,6 +13,10 @@ namespace graphical {
 			get => Loop.thickness;
 			set { Loop.thickness = value; }
 		}
+		public Shape Shape {
+			get => this.shape;
+			set { this.shape = value; }
+		}
 		public System.Drawing.Color Highlight {
 			get => this.highlight ;
 			set { this.highlight  = value; }
@@ -39,6 +43,11 @@ namespace graphical {
                     loop.Draw(graphics, ratio);
                 }
             }
+		}
+		public static void Remove(Loop loop) {
+			int index = Loop.loops.IndexOf(loop);
+			if(index == -1) return;
+			Loop.loops.RemoveAt(index);
 		}
         public static Loop GetCollidedLoop(int x, int y, decimal ratio) {
         	float dx;
