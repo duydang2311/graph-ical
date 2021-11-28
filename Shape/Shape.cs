@@ -6,6 +6,7 @@ namespace graphical {
         protected System.Drawing.Color color;
         protected System.Collections.Generic.List<Shape> adjacency; 
         protected string text;
+        protected Loop loop;
         public Point Anchor {
             get => this.anchor;
             set { this.anchor = value; }
@@ -21,6 +22,10 @@ namespace graphical {
         public string Text {
             get => this.text;
             set { this.text = value; }
+        }
+        public Loop Loop {
+            get => this.loop;
+            set { this.loop = value; }
         }
         public Shape(Point anchor, System.Drawing.Color color) {
             this.anchor = anchor;
