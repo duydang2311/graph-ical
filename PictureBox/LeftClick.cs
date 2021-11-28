@@ -29,7 +29,7 @@ namespace graphical {
 							}
 						} else {
 							if(shape.Loop == null) {
-								new Loop(shape);
+								shape.Loop = new Loop(shape);
 							}
 						}
 						this.firstClickShape = null;
