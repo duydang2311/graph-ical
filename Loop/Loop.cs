@@ -4,9 +4,11 @@ namespace graphical {
 		protected static float thickness = 2.0f;
 		protected Shape shape;
 		protected System.Drawing.Color highlight;
+		protected float angle;
 		public Loop(Shape shape) {
 			this.shape = shape;
 			this.highlight = System.Drawing.Color.Transparent;
+			this.angle = 0.0f;
 			Loop.loops.Add(this);
 		}
 		public static float Thickness {
@@ -21,13 +23,23 @@ namespace graphical {
 			get => this.highlight ;
 			set { this.highlight  = value; }
 		}
+		public float Angle {
+			get => this.angle;
+			set { this.angle = value; }
+		}
 		public void Draw(System.Drawing.Graphics graphics, decimal ratio) {
 			System.Drawing.Color color = System.Drawing.Color.Black;
 			if(this.highlight != System.Drawing.Color.Transparent) {
 				color = this.highlight;
 			}
 			using(System.Drawing.Pen pen = new System.Drawing.Pen(color, Loop.thickness * (float)ratio)) {
-				graphics.DrawEllipse(pen, (shape.CenterX - shape.OffsetX) * (float)ratio, shape.CenterY * (float)ratio, 70 * (float)ratio, 70 * (float)ratio);
+				graphics.DrawEllipse(
+					pen,
+					(float)(shape.Anchor.X + shape.OffsetX * System.Math.Cos(this.angle)) * (float)ratio,
+					(float)(shape.Anchor.Y + shape.OffsetY * System.Math.Sin(this.angle)) * (float)ratio,
+					70 * (float)ratio,
+					70 * (float)ratio
+				);
 			}
 		}
 		public static void __Draw(System.Drawing.Graphics graphics, decimal ratio, float width = 0.0f, float height = 0.0f) {
@@ -53,9 +65,13 @@ namespace graphical {
         	float dx;
         	float dy;
         	float dist;
+			float centerX;
+			float centerY;
         	foreach(Loop loop in Loop.loops) {
-        		dx = loop.shape.CenterX * (float)ratio - x;
-        		dy = (loop.shape.CenterY + loop.shape.OffsetY) * (float)ratio - y;
+				centerX = (float)(loop.shape.CenterX + loop.shape.OffsetX * System.Math.Cos(loop.angle)) * (float)ratio;
+				centerY = (float)(loop.shape.CenterY + loop.shape.OffsetY * System.Math.Sin(loop.angle)) * (float)ratio;
+        		dx = centerX - x;
+        		dy = centerY - y;
         		dist = (float)System.Math.Sqrt(dx * dx + dy * dy);
         		if(dist >= (loop.shape.OffsetX - Loop.thickness) * (float)ratio && dist <= (loop.shape.OffsetX + Loop.thickness) * (float)ratio) {
         			return loop;
