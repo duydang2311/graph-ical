@@ -17,6 +17,11 @@ namespace graphical {
 					line.End.RemoveAdjacency(line.Start);
 					Line.Remove(line);
 					this.pictureBox.Refresh();
+				} else if(hoveringObject is Loop) {
+					Loop loop = (Loop)hoveringObject;
+					loop.Shape.Loop = null;
+					Loop.Remove(loop);
+					this.pictureBox.Refresh();
 				}
 			}
 		}
