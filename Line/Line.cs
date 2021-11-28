@@ -8,6 +8,7 @@ namespace graphical {
         protected bool highlighted;
         protected bool startArrow;
         protected bool endArrow;
+        protected string text;
         public Shape Start {
             get => this.start;
             set { this.start = value; }
@@ -32,6 +33,10 @@ namespace graphical {
             get => Line.thickness;
             set { Line.thickness = value; }
         }
+        public string Text {
+            get => this.text;
+            set { this.text = value; }
+        }
         public Line(System.Drawing.Color color, Shape start, Shape end) {
             this.color = color;
             this.start = start;
@@ -39,22 +44,33 @@ namespace graphical {
             this.highlighted = false;
             this.startArrow = false;
             this.endArrow = false;
+            this.text = "";
             lines.Add(this);
         }
         public virtual void Draw(System.Drawing.Graphics graphics, decimal ratio) {
-            System.Drawing.Pen p = new System.Drawing.Pen(this.color, Line.thickness * (float)ratio);
-            if(highlighted) {
-                p.Color = System.Drawing.Color.Red;
-            }
             Util.Normalize(this.start.Anchor.X, this.start.Anchor.Y, this.end.Anchor.X, this.end.Anchor.Y, out float vx, out float vy);
             Point start = new Point((int)(this.start.CenterX + vx * this.start.OffsetX), (int)(this.start.CenterY + vy * this.start.OffsetY));
             Point end = new Point((int)(this.end.CenterX - vx * this.end.OffsetX), (int)(this.end.CenterY - vy * this.end.OffsetY));
-            graphics.DrawLine(p, (int)(start.X * ratio), (int)(start.Y * ratio), (int)(end.X * ratio), (int)(end.Y * ratio));
-            if(this.endArrow) {
-                Util.DrawArrowHead(graphics, p, end, vx, vy, 7, ratio);
-            }
-            if(this.startArrow) {
-                Util.DrawArrowHead(graphics, p, start, -vx, -vy, 7, ratio);
+            using(System.Drawing.Pen p = new System.Drawing.Pen(this.color, Line.thickness * (float)ratio)) {
+                if(highlighted) {
+                    p.Color = System.Drawing.Color.Red;
+                }
+                graphics.DrawLine(p, (int)(start.X * ratio), (int)(start.Y * ratio), (int)(end.X * ratio), (int)(end.Y * ratio));
+                using(System.Drawing.Font arial = new System.Drawing.Font("Arial", 20 * (float)ratio, System.Drawing.GraphicsUnit.Pixel)) {
+                    using(System.Drawing.StringFormat sf = new System.Drawing.StringFormat()) {
+                        float centerX = ((start.X + end.X) / 2 + vy * 15) * (float)ratio;
+                        float centerY = ((start.Y + end.Y) / 2 - vx * 15) * (float)ratio;
+                        sf.Alignment = System.Drawing.StringAlignment.Center;
+                        sf.LineAlignment = System.Drawing.StringAlignment.Center;
+                        graphics.DrawString(this.text, arial, System.Drawing.Brushes.Black, centerX, centerY, sf);
+                    }
+                }
+                if(this.endArrow) {
+                    Util.DrawArrowHead(graphics, p, end, vx, vy, 7, ratio);
+                }
+                if(this.startArrow) {
+                    Util.DrawArrowHead(graphics, p, start, -vx, -vy, 7, ratio);
+                }
             }
         }
         public static void __Draw(System.Drawing.Graphics graphics, decimal ratio, float width = 0.0f, float height = 0.0f) {
