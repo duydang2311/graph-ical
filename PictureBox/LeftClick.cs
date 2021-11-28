@@ -5,7 +5,7 @@ namespace graphical {
 	public partial class Form1 : Form {
         private Shape firstClickShape;
 		private void PictureBox_LeftClick_MouseClick(object sender, MouseEventArgs e) {
-			if(e.Button != MouseButtons.Left || this.cursorState != CursorStates.Add || draggedShape != null) {
+			if(e.Button != MouseButtons.Left || this.cursorState != CursorStates.Add || this.draggedObject != null) {
 				return;
 			}
 			if(hoveringObject != null) {
