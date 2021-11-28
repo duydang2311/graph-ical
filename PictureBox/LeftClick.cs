@@ -28,7 +28,9 @@ namespace graphical {
 								}
 							}
 						} else {
-							new Loop(shape);
+							if(shape.Loop == null) {
+								new Loop(shape);
+							}
 						}
 						this.firstClickShape = null;
 					} else {
@@ -37,12 +39,26 @@ namespace graphical {
 				} else if(hoveringObject is Line) {
 					Line line = (Line)hoveringObject;
 					int side = Line.GetSideOfPoint(line, e.Location.X, e.Location.Y, this.ratio);
-					if(side == -1) {
-						line.StartArrow = !line.StartArrow;
-					} else if(side == 1) {
-						line.EndArrow = !line.EndArrow;
-					} else {
-						return;
+					switch(side) {
+						case -1: {
+							line.StartArrow = !line.StartArrow;
+							break;
+						}
+						case 0: {
+							using(TextBoxForm prompt = TextBoxForm.Prompt(this, this.Location.X + e.Location.X, this.Location.Y + e.Location.Y, line.Text)) {
+								switch(prompt.Result) {
+									case DialogResult.OK: {
+										line.Text = prompt.InputText;
+										break;
+									}
+								}
+							}
+							break;
+						}
+						case 1: {
+							line.EndArrow = !line.EndArrow;
+							break;
+						}
 					}
 					this.pictureBox.Refresh();
 				}
