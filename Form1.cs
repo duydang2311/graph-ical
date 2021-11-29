@@ -41,13 +41,15 @@ namespace graphical
 			form.ShowDialog(this);
 		}
 		private void Form1_Resize(object sender, EventArgs e) {
-			this.pictureBox.Width = this.Width;
-			this.pictureBox.Height = this.Height;
+			this.pictureBox.Width = this.Width - 16;
+			this.pictureBox.Height = this.Height - 39;
+			this.pictureBox.Refresh();
 		}
 		private void Form1_KeyDown(object sender, KeyEventArgs e) {
 			if(e.Control) {
 				this.Cursor = Cursors.Default;
 				this.cursorState = CursorStates.Select;
+				this.pictureBox.Refresh();
 			} else {
 				if(this.hoveringObject != null) {
 					this.Cursor = Cursors.Hand;
@@ -55,9 +57,16 @@ namespace graphical
 					this.Cursor = Cursors.Cross;
 				}
 				this.cursorState = CursorStates.Add;
+				this.pictureBox.Refresh();
 			}
 		}
 		private void Form1_KeyUp(object sender, KeyEventArgs e) {
+			if(e.KeyCode == Keys.F1) {
+				Form_About form = new Form_About();
+				form.StartPosition = FormStartPosition.CenterParent;
+				form.ShowDialog(this);
+				return;
+			}
 			if(!e.Control) {
 				if(this.hoveringObject != null) {
 					this.Cursor = Cursors.Hand;
@@ -65,6 +74,7 @@ namespace graphical
 					this.Cursor = Cursors.Cross;
 				}
 				this.cursorState = CursorStates.Add;
+				this.pictureBox.Refresh();
 			}
 		}
 	}
