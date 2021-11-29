@@ -5,10 +5,12 @@ namespace graphical {
 		protected Shape shape;
 		protected System.Drawing.Color highlight;
 		protected float angle;
+		protected string text;
 		public Loop(Shape shape) {
 			this.shape = shape;
 			this.highlight = System.Drawing.Color.Transparent;
 			this.angle = 0.0f;
+			this.text = "";
 			Loop.loops.Add(this);
 		}
 		public static float Thickness {
@@ -27,6 +29,10 @@ namespace graphical {
 			get => this.angle;
 			set { this.angle = value; }
 		}
+		public string Text {
+			get => this.text;
+			set { this.text = value; }
+		}
 		public void Draw(System.Drawing.Graphics graphics, decimal ratio) {
 			System.Drawing.Color color = System.Drawing.Color.Black;
 			if(this.highlight != System.Drawing.Color.Transparent) {
@@ -40,6 +46,23 @@ namespace graphical {
 					shape.OffsetX * 2 * (float)ratio,
 					shape.OffsetY * 2 * (float)ratio
 				);
+				using(System.Drawing.Font arial = new System.Drawing.Font("Arial", 20 * (float)ratio, System.Drawing.GraphicsUnit.Pixel)) {
+					using(System.Drawing.StringFormat sf = new System.Drawing.StringFormat()) {
+						System.Drawing.Size measure = System.Windows.Forms.TextRenderer.MeasureText(this.text, arial);
+						float centerX = (float)(this.shape.CenterX + (2 * this.shape.OffsetX + measure.Width / 1.6 / (float)ratio) * System.Math.Cos(this.angle)) * (float)ratio;
+						float centerY = (float)(this.shape.CenterY + (2 * this.shape.OffsetY + measure.Height / 1.6 / (float)ratio) * System.Math.Sin(this.angle)) * (float)ratio;
+						sf.Alignment = System.Drawing.StringAlignment.Center;
+						sf.LineAlignment = System.Drawing.StringAlignment.Center;
+						graphics.DrawString(
+							this.text,
+							arial,
+							System.Drawing.Brushes.Black,
+							centerX,
+							centerY,
+							sf
+						);
+					}
+				}
 			}
 		}
 		public static void __Draw(System.Drawing.Graphics graphics, decimal ratio, float width = 0.0f, float height = 0.0f) {
