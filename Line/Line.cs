@@ -97,6 +97,17 @@ namespace graphical {
             if(index == -1) return;
             Line.lines.RemoveAt(index);
         }
+        public static void RemoveByShape(Shape shape) {
+            System.Collections.Generic.List<Line> temp = new System.Collections.Generic.List<Line>();
+            foreach(Line line in Line.lines) {
+                if(line.start == shape || line.end == shape) {
+                    temp.Add(line);
+                }
+            }
+            foreach(Line line in temp) {
+                Line.Remove(line);
+            }
+        }
         public static Line GetCollidedLine(int x, int y, decimal ratio) {
             float startDist;
             float endDist;
