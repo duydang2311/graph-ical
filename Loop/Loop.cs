@@ -37,8 +37,8 @@ namespace graphical {
 					pen,
 					(float)(shape.Anchor.X + shape.OffsetX * System.Math.Cos(this.angle)) * (float)ratio,
 					(float)(shape.Anchor.Y + shape.OffsetY * System.Math.Sin(this.angle)) * (float)ratio,
-					70 * (float)ratio,
-					70 * (float)ratio
+					shape.OffsetX * 2 * (float)ratio,
+					shape.OffsetY * 2 * (float)ratio
 				);
 			}
 		}
