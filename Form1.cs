@@ -35,6 +35,9 @@ namespace graphical
 			this.SetStyle(ControlStyles.UserPaint, true);
 			this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 			this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+			Form_About form = new Form_About();
+			form.ShowDialog();
 		}
 		private void Form1_Resize(object sender, EventArgs e) {
 			this.pictureBox.Width = this.Width;
