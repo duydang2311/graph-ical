@@ -12,13 +12,13 @@ namespace graphical {
 				if(this.cursorState == CursorStates.Add) {
 					this.Cursor = Cursors.Hand;
 				}
-				if(hoveringObject != null) {
+				if(hoveringObject != null && hoveringObject != obj) {
 					if(hoveringObject is Shape) {
 						((Shape)hoveringObject).Hovering = false;
 					} else if(hoveringObject is Line) {
 						((Line)hoveringObject).Highlighted = false;
 					} else if(hoveringObject is Loop) {
-						((Loop)hoveringObject).Highlight = System.Drawing.Color.Red;
+						((Loop)hoveringObject).Highlight = System.Drawing.Color.Transparent;
 					}
 				}
 				if(obj is Shape) {
