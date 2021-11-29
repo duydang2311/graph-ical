@@ -3,8 +3,12 @@ using System.Windows.Forms;
 namespace graphical {
 	public partial class Form1 : Form {
         private object draggedObject;
+        private int draggingMouseX;
+        private int draggingMouseY;
         private void PictureBox_Drag_MouseDown(object sender, MouseEventArgs e) {
             if(this.cursorState == CursorStates.Select) {
+                draggingMouseX = e.Location.X;
+                draggingMouseY = e.Location.Y;
                 Point point = new Point(e.Location.X, e.Location.Y);
                 object obj = Shape.GetCollidedShape(e.Location.X, e.Location.Y, this.ratio);
                 if(obj == null) {
@@ -17,6 +21,8 @@ namespace graphical {
         }
         private void PictureBox_Drag_MouseMove(object sender, MouseEventArgs e) {
             if(this.draggedObject != null) {
+                draggingMouseX = e.Location.X;
+                draggingMouseY = e.Location.Y;
                 if(this.draggedObject is Shape) {
                     Shape shape = (Shape)this.draggedObject;
                     shape.Anchor.X = this.DivideRatio(e.Location.X - this.MultiplyRatio(shape.OffsetX));
