@@ -59,8 +59,8 @@ namespace graphical {
                 using(System.Drawing.Font arial = new System.Drawing.Font("Arial", 20 * (float)ratio, System.Drawing.GraphicsUnit.Pixel)) {
                     using(System.Drawing.StringFormat sf = new System.Drawing.StringFormat()) {
                         System.Drawing.Size measure = System.Windows.Forms.TextRenderer.MeasureText(this.text, arial);
-                        float centerX = ((start.X + end.X) / 2 + vy * measure.Width / 2) * (float)ratio;
-                        float centerY = ((start.Y + end.Y) / 2 - vx * measure.Height) * (float)ratio;
+                        float centerX = ((start.X + end.X) / 2 + vy * measure.Width / 2 / (float)ratio) * (float)ratio;
+                        float centerY = ((start.Y + end.Y) / 2 - vx * measure.Height / (float)ratio) * (float)ratio;
                         sf.Alignment = System.Drawing.StringAlignment.Center;
                         sf.LineAlignment = System.Drawing.StringAlignment.Center;
                         graphics.DrawString(this.text, arial, System.Drawing.Brushes.Black, centerX, centerY, sf);
