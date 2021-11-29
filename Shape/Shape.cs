@@ -92,6 +92,8 @@ namespace graphical {
         public static void Remove(Shape shape) {
             int index = Shape.shapes.IndexOf(shape);
             if(index == -1) return;
+            Loop.Remove(shape.loop);
+            Line.RemoveByShape(shape);
             Shape.shapes.RemoveAt(index);
             foreach(Shape s in Shape.shapes) {
                 s.RemoveAdjacency(shape);
