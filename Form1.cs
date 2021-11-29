@@ -37,7 +37,8 @@ namespace graphical
 			this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
 			Form_About form = new Form_About();
-			form.ShowDialog();
+			form.StartPosition = FormStartPosition.CenterParent;
+			form.ShowDialog(this);
 		}
 		private void Form1_Resize(object sender, EventArgs e) {
 			this.pictureBox.Width = this.Width;

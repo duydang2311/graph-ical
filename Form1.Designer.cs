@@ -52,6 +52,7 @@ namespace graphical
 			this.Text = "graph-ical";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.BackColor = System.Drawing.Color.White;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
 			this.ResumeLayout(false);
 
