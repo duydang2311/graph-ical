@@ -61,6 +61,17 @@ namespace graphical {
 						}
 					}
 					this.pictureBox.Refresh();
+				} else if(hoveringObject is Loop) {
+					Loop loop = (Loop)hoveringObject;
+					using(TextBoxForm prompt = TextBoxForm.Prompt(this, this.Location.X + e.Location.X, this.Location.Y + e.Location.Y, loop.Text)) {
+						switch(prompt.Result) {
+							case DialogResult.OK: {
+								loop.Text = prompt.InputText;
+								this.pictureBox.Refresh();
+								break;
+							}
+						}
+					}
 				}
 				return;
 			}
