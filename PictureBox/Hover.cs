@@ -40,6 +40,8 @@ namespace graphical {
 				((Line)hoveringObject).Highlighted = false;
 			} else if(hoveringObject is Loop) {
 				((Loop)hoveringObject).Highlight = System.Drawing.Color.Transparent;
+			} else {
+				return;
 			}
 			hoveringObject = null;
 			this.pictureBox.Refresh();
