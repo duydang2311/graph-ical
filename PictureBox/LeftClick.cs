@@ -4,6 +4,7 @@ using System.Windows.Forms;
 namespace graphical {
 	public partial class Form1 : Form {
         private Shape firstClickShape;
+		private int increment = 0;
 		private void PictureBox_LeftClick_MouseClick(object sender, MouseEventArgs e) {
 			if(e.Button != MouseButtons.Left || this.cursorState != CursorStates.Add || this.draggedObject != null) {
 				return;
@@ -78,7 +79,7 @@ namespace graphical {
 			const int size = 70;
 			int offsetedX = (int)((e.Location.X - (int)(size * (double)(this.ratio) / 2.0)) / this.ratio);
 			int offsetedY = (int)((e.Location.Y - (int)(size * (double)(this.ratio) / 2.0)) / this.ratio);
-			new Circle(new Point(offsetedX, offsetedY), size, Color.Black);
+			new Circle(new Point(offsetedX, offsetedY), size, Color.Black).Text = (++this.increment).ToString();
 			this.pictureBox.Refresh();
 		}
     }

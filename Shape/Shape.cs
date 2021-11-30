@@ -32,7 +32,7 @@ namespace graphical {
             this.color = color;
             this.hovering = true;
             this.adjacency = new System.Collections.Generic.List<Shape>();
-            this.text = "Text";
+            this.text = "";
             Shape.shapes.Add(this);
         }
         public abstract void Draw(System.Drawing.Graphics graphics, decimal ratio);
