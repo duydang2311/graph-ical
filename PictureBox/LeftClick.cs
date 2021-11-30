@@ -76,7 +76,7 @@ namespace graphical {
 				}
 				return;
 			}
-			const int size = 70;
+			const int size = 35;
 			int offsetedX = (int)((e.Location.X - (int)(size * (double)(this.ratio) / 2.0)) / this.ratio);
 			int offsetedY = (int)((e.Location.Y - (int)(size * (double)(this.ratio) / 2.0)) / this.ratio);
 			new Circle(new Point(offsetedX, offsetedY), size, Color.Black).Text = (++this.increment).ToString();
