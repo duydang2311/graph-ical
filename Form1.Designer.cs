@@ -81,11 +81,12 @@ namespace graphical
 			this.labelAuthor.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.labelAuthor.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.labelAuthor.ForeColor = System.Drawing.SystemColors.HighlightText;
-			this.labelAuthor.Location = new System.Drawing.Point(0, 556);
+			this.labelAuthor.Location = new System.Drawing.Point(0, 543);
 			this.labelAuthor.Name = "labelAuthor";
-			this.labelAuthor.Size = new System.Drawing.Size(235, 45);
+			this.labelAuthor.Size = new System.Drawing.Size(235, 58);
 			this.labelAuthor.TabIndex = 2;
-			this.labelAuthor.Text = "Authors\r\nDang Quoc Duy\r\nNgo Nguyen Quoc Anh";
+			this.labelAuthor.Text = "Authors\r\nDang Quoc Duy\r\nNgo Nguyen Quoc Anh\r\nAssisted by Assoc. Prof. Hoang Van D" +
+    "ung";
 			this.labelAuthor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// labelGraphical
