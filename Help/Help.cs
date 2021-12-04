@@ -5,13 +5,17 @@ namespace graphical {
                 graphics.FillRectangle(brush, -2, this.pictureBox.Height - 30, this.pictureBox.Width + 2, this.pictureBox.Height + 1);
             }
         }
-        public void DrawHelpText(System.Drawing.Graphics graphics) {
-            using(System.Drawing.Font arial = new System.Drawing.Font("Arial", 15, System.Drawing.GraphicsUnit.Pixel)) {
-                if(this.cursorState == CursorStates.Add) {
-                    graphics.DrawString("F1─About    CTRL─Enter select state    LMB─Create, adjust vertex, edge, loop    RMB─Delete vertex, edge, loop", arial, System.Drawing.Brushes.White, 10, this.pictureBox.Size.Height - 24);
-                } else {
-                    graphics.DrawString("F1─About     LMB─Drag vertex, loop", arial, System.Drawing.Brushes.White, 10, this.pictureBox.Size.Height - 24);
-                }
+        public void UpdateHelpText() {
+            if(this.cursorState == CursorStates.Add) {
+                this.helpLabel.Text = 
+                    "F1─About\r\n__________________\r\n" +
+                    "CTRL─Enter select state\r\n__________________\r\n" +
+                    "LMB─Create, adjust vertex, edge, loop\r\n__________________\r\n" +
+                    "RMB─Delete vertex, edge, loop";
+            } else {
+                this.helpLabel.Text = 
+                    "F1─About\r\n__________________\r\n" +
+                    "LMB─Drag vertex, loop";
             }
         }
         public void DrawHelpMouse(System.Drawing.Graphics graphics) {

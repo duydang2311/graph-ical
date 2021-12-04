@@ -11,10 +11,8 @@ namespace graphical {
             Loop.__Draw(e.Graphics, this.ratio, this.pictureBox.Width, this.pictureBox.Height);
 			Shape.__Draw(e.Graphics, this.ratio, this.pictureBox.Width, this.pictureBox.Height);
             Line.__Draw(e.Graphics, this.ratio, this.pictureBox.Width, this.pictureBox.Height);
-			this.DrawHelpBackground(e.Graphics);
-			if(this.draggedObject == null) {
-				this.DrawHelpText(e.Graphics);
-			} else {
+			if(this.draggedObject != null) {
+				this.DrawHelpBackground(e.Graphics);
 				this.DrawHelpMouse(e.Graphics);
 			}
 		}

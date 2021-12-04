@@ -49,7 +49,7 @@ namespace graphical
 			if(e.Control) {
 				this.Cursor = Cursors.Default;
 				this.cursorState = CursorStates.Select;
-				this.pictureBox.Refresh();
+				this.UpdateHelpText();
 			} else {
 				if(this.hoveringObject != null) {
 					this.Cursor = Cursors.Hand;
@@ -57,7 +57,7 @@ namespace graphical
 					this.Cursor = Cursors.Cross;
 				}
 				this.cursorState = CursorStates.Add;
-				this.pictureBox.Refresh();
+				this.UpdateHelpText();
 			}
 		}
 		private void Form1_KeyUp(object sender, KeyEventArgs e) {
@@ -74,7 +74,7 @@ namespace graphical
 					this.Cursor = Cursors.Cross;
 				}
 				this.cursorState = CursorStates.Add;
-				this.pictureBox.Refresh();
+				this.UpdateHelpText();
 			}
 		}
 	}
