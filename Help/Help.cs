@@ -11,11 +11,13 @@ namespace graphical {
                     "F1─About\r\n__________________\r\n" +
                     "CTRL─Enter select state\r\n__________________\r\n" +
                     "LMB─Create, adjust vertex, edge, loop\r\n__________________\r\n" +
-                    "RMB─Delete vertex, edge, loop";
+                    "RMB─Delete vertex, edge, loop\r\n__________________\r\n" +
+                    "Wheel-Zoom in, zoom out";
             } else {
                 this.helpLabel.Text = 
                     "F1─About\r\n__________________\r\n" +
-                    "LMB─Drag vertex, loop";
+                    "LMB─Drag vertex, loop\r\n__________________\r\n" +
+                    "Wheel-Zoom in, zoom out";
             }
         }
         public void DrawHelpMouse(System.Drawing.Graphics graphics) {

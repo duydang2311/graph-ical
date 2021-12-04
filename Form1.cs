@@ -41,8 +41,8 @@ namespace graphical
 			form.ShowDialog(this);
 		}
 		private void Form1_Resize(object sender, EventArgs e) {
-			this.pictureBox.Width = this.Width - 16;
-			this.pictureBox.Height = this.Height - 39;
+			// this.pictureBox.Width = this.Width - 16;
+			// this.pictureBox.Height = this.Height - 39;
 			this.pictureBox.Refresh();
 		}
 		private void Form1_KeyDown(object sender, KeyEventArgs e) {

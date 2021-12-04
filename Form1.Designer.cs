@@ -69,7 +69,7 @@ namespace graphical
 			this.helpLabel.ForeColor = System.Drawing.SystemColors.HighlightText;
 			this.helpLabel.Location = new System.Drawing.Point(3, 218);
 			this.helpLabel.Name = "helpLabel";
-			this.helpLabel.Size = new System.Drawing.Size(229, 173);
+			this.helpLabel.Size = new System.Drawing.Size(229, 200);
 			this.helpLabel.TabIndex = 3;
 			this.helpLabel.Text = "F1─About\r\n__________________\r\nCTRL─Enter select state\r\n__________________\r\nLMB─Cr" +
     "eate, adjust vertex, edge, loop\r\n__________________\r\nRMB─Delete vertex, edge, lo" +
