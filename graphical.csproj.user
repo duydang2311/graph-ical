@@ -28,9 +28,6 @@
     <Compile Update="TextBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="TransparentTextBox\TransparentTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Update="Util\Ratio.cs">
       <SubType>Form</SubType>
     </Compile>
